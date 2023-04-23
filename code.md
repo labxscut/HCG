@@ -65,7 +65,7 @@ valid_mutation, valid_CNV, valid_methylation = split_data(valid_data)
 
 
 
-##Lasso-Logistic regression
+## Lasso-Logistic regression
 
 We evaluate three competitive hierarchical stepwise classification strategies: DCS, CBCS and HBCS. Among these strategies, we use Lasso-Logistic regression method to construct different classifiers and compared their performance.
 
@@ -500,7 +500,7 @@ plot_roc_ave32(train_32, train_target, valid_32, valid_target,  parameters_32,st
 
 
 
-###HBCS strategy
+### HBCS strategy
 
 ```python
 def plot_roc_ave222_1(train_x, train_y, valid_x, valid_y, parameters):
@@ -836,7 +836,7 @@ plot_ave_for_strategy(train_features_four, train_target,valid_features_four, val
 
 
 
-##Alluvial map
+## Alluvial map
 
 We mapped Alluvial map by R language to show the flow between original subtypes and DCS(A), CBCS(A), HBCS(A) subtypes.
 
