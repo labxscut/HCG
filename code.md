@@ -1,8 +1,8 @@
-#DNA-based hierarchical classification classifier
+# DNA-based hierarchical classification classifier
 
 Here, we complete the DNA-based hierarchical classification classifier. Our starting point is based on pre-processed genomics/epigenomics/expression/clinical data that have been segmented by sample. We demonstrate how the data can be imported into R and Python software for analysis.
 
-##Getting ready
+## Getting ready
 
 First we load the packages.
 
