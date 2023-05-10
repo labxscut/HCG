@@ -10,7 +10,7 @@ The required dependency is R.
 
 The code is contained in <code.md>; the data details are shown in <The_data_for_HCG.md>.
 
-
+![1. Study design, classification strategies and dataset description.](HCG\Figures\1. Study design, classification strategies and dataset description..jpg)
 
 # Contact & Support:
 
