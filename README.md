@@ -10,9 +10,6 @@ The required dependency is R and Python.
 
 The code is contained in <code.md>; the data details are shown in <The_data_for_HCG.md>.
 
-![image](Figures/1. Study design, classification strategies and dataset description..jpg)
-
-<center>Figure 1: Conceptual design of this study</center>
 
 # Contact & Support:
 
