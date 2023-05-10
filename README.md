@@ -1,4 +1,4 @@
-# HCG, a H**ierarchical DNA-based **Classifier for Gastric Cancer Molecular Subtyping
+# HCG, a Hierarchical DNA-based Classifier for Gastric Cancer Molecular Subtyping
 
 
 
@@ -12,7 +12,7 @@ The code is contained in <code.md>; the data details are shown in <The_data_for_
 
 
 
-#Contact & Support:
+# Contact & Support:
 
 * Li C. Xia: email: [lcxia@scut.edu.cn](mailto:lcxia@scut.edu.cn)
 * Jiemin Xie: email: [202120130808@mail.scut.edu.cn](mailto:202120130808@mail.scut.edu.cn)
