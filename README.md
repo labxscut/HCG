@@ -8,7 +8,8 @@ This repository is code dedicated to the testing data of HCG, a classifier which
 The required dependency is R and Python.
 
 The code is contained in <code.md> (https://github.com/labxscut/HCG/blob/main/code.md)
-the data details are shown in https://github.com/labxscut/HCG/tree/main/Data
+
+The data details are shown in https://github.com/labxscut/HCG/tree/main/Data
 
 
 # Contact & Support:
