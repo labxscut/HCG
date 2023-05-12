@@ -3,7 +3,7 @@
 
 ## Introduction
 
-This repository is code dedicated to the testing data of HCG, a classifier which have good performance in identifying the intrinsic subtypes of gastric cancer. Leveraging three multi-omics (mutation, CNA, methylation and expression) datasets from TCGA, we developed a DNA-level predictive model, which we termed HCG (Hierarchical DNA-based Classifier for Gastric Cancer Molecular Subtyping) using hierarchical stepwise learning method.
+This repository is code dedicated to the testing data of HCG, a classifier which have good performance in identifying the molecular subtypes of gastric cancer. Leveraging three DNA-alterations (gene mutation, CNA, methylation) datasets from TCGA, we developed a DNA-level predictive classifier, which we termed HCG (Hierarchical DNA-based Classifier for Gastric Cancer Molecular Subtyping) using hierarchical stepwise learning method.
 
 The required dependency is R and Python.
 
