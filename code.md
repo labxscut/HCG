@@ -71,6 +71,9 @@ We evaluate three competitive hierarchical stepwise classification strategies: D
 
 Before implementing the three strategies programming, we first define some basic functions to facilitate subsequent code calls and implementation.
 
+![](https://github.com/labxscut/HCG/blob/main/Figures/5.%20candidate%20strategies.jpg?raw=true)
+<center>Figure 1: Candidate strategies</center>
+
 ```python
 def find_best_par(C_max, C_min, num, features, target, random_state):
     start_time = time.time()
@@ -833,7 +836,8 @@ def plot_ave_for_strategy(train_x, train_y, valid_x, valid_y, parameters1, param
 plot_ave_for_strategy(train_features_four, train_target,valid_features_four, valid_target, parameters_4["all"], parameters_32["all"], parameters_222["all"],[1,2,3,4],path="strategy")
 
 ```
-
+![](https://github.com/labxscut/HCG/blob/main/Figures/2.%20ROC%20curves%20of%2012%20candidate%20classifiers.jpg?raw=true)
+<center>Figure 2: ROC curves of 12 candidate classifiers</center>
 
 
 ## Alluvial map
@@ -1003,7 +1007,8 @@ pheatmap(mutation1,
 
 ```
 
-
+![](https://github.com/labxscut/HCG/blob/main/Figures/6.%20Heatmap%20of%20all%20significant%20gene%20mutations,%20CNAs,%20and%20methylations.jpg?raw=true)
+<center>Figure 3: Heatmap of all significant gene mutations, CNAs, and methylations</center>
 
 ### Survival analysis
 
@@ -1036,6 +1041,8 @@ ggforest(cox_pict1,
      )
 ```
 
+![](https://github.com/labxscut/HCG/blob/main/Figures/7.%20%20Multivariate%20survival%20analyses%20using%20all%20samples%20from%20TCGA%20and%20I-MC(A),%20II-HC(A)%20and%20III-HC(A)%20defined%20subtypes..jpg?raw=true)
+<center>Figure 4: Multivariate survival analyses using all samples from TCGA and I-MC(A), II-HC(A) and III-HC(A) defined subtypes</center>
 
 
  
