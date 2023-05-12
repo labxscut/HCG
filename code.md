@@ -1,6 +1,6 @@
 # DNA-based hierarchical classification classifier
 
-Here, we complete the DNA-based hierarchical classification classifier. Our starting point is based on pre-processed genomics/epigenomics/expression/clinical data that have been segmented by sample. We demonstrate how the data can be imported into R and Python software for analysis.
+Here, we complete the DNA-based hierarchical classification classifier. Our starting point is based on pre-processed genomics/epigenomics/clinical data that have been segmented by sample. We demonstrate how the data can be imported into R and Python software for analysis.
 
 ## Getting ready
 
@@ -67,7 +67,7 @@ valid_mutation, valid_CNV, valid_methylation = split_data(valid_data)
 
 ## Lasso-Logistic regression
 
-We evaluate three competitive hierarchical stepwise classification strategies: DCS, CBCS and HBCS. Among these strategies, we use Lasso-Logistic regression method to construct different classifiers and compared their performance.
+We evaluate three competitive hierarchical stepwise classification strategies: Ⅰ-MC, Ⅱ-HC and Ⅲ-HC. Among these strategies, we use Lasso-Logistic regression method to construct different classifiers and compared their performance.
 
 Before implementing the three strategies programming, we first define some basic functions to facilitate subsequent code calls and implementation.
 
@@ -87,13 +87,13 @@ def find_best_par(C_max, C_min, num, features, target, random_state):
 
     hyperparameters = dict(C=C, penalty=penalty, solver=solver, random_state=random_state, max_iter=max_iter,
                            multi_class=multi_class)
-    # 创建网格搜索对象
+    # 
     kflod = StratifiedKFold(n_splits=5, shuffle=True, random_state=7)
     randomizedsearchCV = GridSearchCV(logistic, hyperparameters, cv=kflod, n_jobs=-1, scoring='accuracy')
     best_model = randomizedsearchCV.fit(features, target)
     parameters = best_model.best_estimator_.get_params()
 
-    print("训练模型耗时为“{}".format(time.time() - start_time))
+   
     return parameters
 
 def accuracy(y_true, y_predict):
@@ -112,10 +112,10 @@ def construct_clf(x_train, y_train, parameters):
     return clf
 
 def plot_roc(train_x, train_y, valid_x, valid_y, label, parameters, name):
-    # 将标签二值化
+    
     valid_y = label_binarize(valid_y, classes=label)
     train_y = label_binarize(train_y, classes=label)
-    # 设置种类
+  
     n_classes = valid_y.shape[1]
     n_samples, n_features = valid_x.shape
 
@@ -126,7 +126,6 @@ def plot_roc(train_x, train_y, valid_x, valid_y, label, parameters, name):
            multi_class=parameters["multi_class"]))
     y_score = classifier.fit(train_x, train_y).decision_function(valid_x)
 
-    # 计算每一类的ROC
     fpr = dict()
     tpr = dict()
     roc_auc = dict()
@@ -186,7 +185,7 @@ def plot_roc_compose(y_true,y_prob,name):
 
 
 
-### DCS strategy
+### Ⅰ-MC strategy
 
 ```python
 def plot_roc_ave41(train_x, train_y, valid_x, valid_y, label, parameters):
@@ -308,7 +307,7 @@ acc_4["methylation"],clf_4["methylation"],y_predict_4["methylation"]=main_4(trai
 plot_roc_ave4(train_4,train_target,valid_4,valid_target,[1,2,3,4],parameters_4,'4_classfier')
 ```
 
-### CBCS strategy
+### Ⅱ-HC strategy
 
 ```python
 def accuracy_32(acc1,acc2):
@@ -503,7 +502,7 @@ plot_roc_ave32(train_32, train_target, valid_32, valid_target,  parameters_32,st
 
 
 
-### HBCS strategy
+###  Ⅲ-HC strategy
 
 ```python
 def plot_roc_ave222_1(train_x, train_y, valid_x, valid_y, parameters):
@@ -672,7 +671,7 @@ def main_222(train_x, train_y, valid_x, valid_y, C, random_state, name, paramete
 #****************************************************************************
 #************************** HBCS strategy ***********************************
 #****************************************************************************
-存储所有数据信息
+
 parameters_222= {"all":dict(),"mutation":dict(),"CNV":dict(),"methylation":dict()}
 C_222 = {"max": 1.2, "min": 0.2, "num": 50}
 
@@ -766,7 +765,7 @@ def plot_ave_for_strategy(train_x, train_y, valid_x, valid_y, parameters1, param
 
     y_prob = plot_roc_ave32_1(train_x, train_y, valid_x, valid_y, C=[], random_state=42,
                               parameters=parameters2)
-    # 计算每一类的ROC
+
     fpr = dict()
     tpr = dict()
     roc_auc = dict()
@@ -795,7 +794,7 @@ def plot_ave_for_strategy(train_x, train_y, valid_x, valid_y, parameters1, param
 
     y_prob = plot_roc_ave222_1(train_x, train_y, valid_x, valid_y, parameters=parameters3)
 
-    # 计算每一类的ROC
+   
     fpr = dict()
     tpr = dict()
     roc_auc = dict()
@@ -842,11 +841,10 @@ plot_ave_for_strategy(train_features_four, train_target,valid_features_four, val
 
 ## Alluvial map
 
-We mapped Alluvial map by R language to show the flow between original subtypes and DCS(A), CBCS(A), HBCS(A) subtypes.
+We map Alluvial map by R language to show the flow between TCGA subtypes and Ⅰ-MC(A), Ⅱ-HC(A),  Ⅲ-HC(A) defined subtypes.
 
 ```R
-survival<- read.csv('C:\\Users\\什么\\Desktop\\label_SMOTE_train_valid.csv')
-#冲积图
+survival<- read.csv('C:\\Users\\project\\Desktop\\label_SMOTE_train_valid.csv')
 library(ggalluvial)
 subtype <- survival[,2:3]
 subtype[,3] <- survival[,4]
@@ -867,8 +865,8 @@ aggregate[,2] <- as.factor(aggregate[,2])
 aggregate[,4] <- as.factor(aggregate[,4])
 aggregate[,1] <- rep(c('CIN','CIN','CIN','CIN','GS','GS','GS','GS','MSI','MSI','MSI','MSI','EBV','EBV','EBV','EBV'))
 aggregate[,2] <- rep(c('CIN','GS','MSI','EBV','CIN','GS','MSI','EBV','CIN','GS','MSI','EBV','CIN','GS','MSI','EBV'))
-write.csv(aggregate,"C:\\Users\\什么\\Desktop\\123.csv")
-aggregate<- read.csv('C:\\Users\\什么\\Desktop\\123.csv')
+write.csv(aggregate,"C:\\Users\\project\\Desktop\\123.csv")
+aggregate<- read.csv('C:\\Users\\project\\Desktop\\123.csv')
 library(ggalluvial)
 is_alluvia_form(as.data.frame(aggregate), axes = 1:3, silent = TRUE)
 pic<-ggplot(data = aggregate,
@@ -884,7 +882,7 @@ pic<-ggplot(data = aggregate,
 ggsave("alluv_4.jpg", pic , width = 12, height = 8, dpi = 800)
 
 
-survival<- read.csv('C:\\Users\\什么\\Desktop\\data\\label_train_valid.csv')
+survival<- read.csv('C:\\Users\\project\\Desktop\\data\\label_train_valid.csv')
 library(ggalluvial)
 subtype <- survival[,2:3]
 subtype[,3] <- survival[,5]
@@ -907,9 +905,9 @@ aggregate[,4] <- as.factor(aggregate[,4])
 
 aggregate[,1] <- rep(c('CIN','CIN','CIN','CIN','GS','GS','GS','GS','MSI','MSI','MSI','MSI','EBV','EBV','EBV','EBV'))
 aggregate[,2] <- rep(c('CIN','GS','MSI','EBV','CIN','GS','MSI','EBV','CIN','GS','MSI','EBV','CIN','GS','MSI','EBV'))
-write.csv(aggregate,"C:\\Users\\什么\\Desktop\\123.csv")
+write.csv(aggregate,"C:\\Users\\project\\Desktop\\123.csv")
 
-aggregate<- read.csv('C:\\Users\\什么\\Desktop\\123.csv')
+aggregate<- read.csv('C:\\Users\\project\\Desktop\\123.csv')
 is_alluvia_form(as.data.frame(aggregate), axes = 1:3, silent = TRUE)
 pic<-ggplot(data = aggregate,
             aes(axis1 =ORIGION_SUBTYPE, axis2 = FOUR_SUBTYPE, y = Frequency)) +
@@ -924,7 +922,7 @@ pic<-ggplot(data = aggregate,
 ggsave("alluv_222.jpg", pic , width = 12, height = 8, dpi = 800)
 
 
-survival<- read.csv('C:\\Users\\什么\\Desktop\\label_train_valid.csv')
+survival<- read.csv('C:\\Users\\project\\Desktop\\label_train_valid.csv')
 library(ggalluvial)
 subtype <- survival[,2:3]
 subtype[,3] <- survival[,5]
@@ -947,9 +945,9 @@ aggregate[,4] <- as.factor(aggregate[,4])
 
 aggregate[,1] <- rep(c('CIN','CIN','CIN','CIN','GS','GS','GS','GS','MSI','MSI','MSI','MSI','EBV','EBV','EBV','EBV'))
 aggregate[,2] <- rep(c('CIN','GS','MSI','EBV','CIN','GS','MSI','EBV','CIN','GS','MSI','EBV','CIN','GS','MSI','EBV'))
-write.csv(aggregate,"C:\\Users\\什么\\Desktop\\123.csv")
+write.csv(aggregate,"C:\\Users\\project\\Desktop\\123.csv")
 
-aggregate<- read.csv('C:\\Users\\什么\\Desktop\\123.csv')
+aggregate<- read.csv('C:\\Users\\project\\Desktop\\123.csv')
 library(ggalluvial)
 is_alluvia_form(as.data.frame(aggregate), axes = 1:3, silent = TRUE)
 pic<-ggplot(data = aggregate,
@@ -971,7 +969,7 @@ ggsave("alluv_32.jpg", pic , width = 12, height = 8, dpi = 800)
 
 ### Heatmap visualization
 
-To visualize gene mutations, copy number variations, and methylation levels, we generated heatmaps for each of these features. As an example, we present the code for generating a heatmap of gene mutations (the procedure for generating heatmaps for copy number variations and methylation levels is analogous)
+To visualize gene mutations, CNAs, and methylation levels, we generated heatmaps for each of these features. As an example, we present the code for generating a heatmap of gene mutations (the procedure for generating heatmaps for CNAs and methylation levels is analogous)
 
 ```R
 mutation1<-read.table("D:/preSolve2/hot_p/DataSet/New_mutation_ex.txt",header = T)
@@ -1049,7 +1047,7 @@ ggforest(cox_pict1,
 
 ### Difference test
 
-The following is the code for selecting genes with significant differences in copy number variation among different subtypes.
+The following is the code for selecting genes with significant differences in CNA among different subtypes.
 
 ```R
 library(readr)
@@ -1155,7 +1153,7 @@ Ultimately, the outcomes were subjected to correction via the false discovery ra
 
 ```R
 library(readr);
-Datar <- read_table("D:/preSolve2/选取差异基因/mely_EBV.txt",col_names = c("id","Gene","value")) ;
+Datar <- read_table("D:/preSolve2/mely_EBV.txt",col_names = c("id","Gene","value")) ;
 Datar <- Datar[,-1];
 Datar <- Datar[-1,];
 for(i in 1:nrow(Datar[,1])){
@@ -1173,6 +1171,6 @@ for(i in 1:length(v)) {
   sz = i ;
 }
 v <- v[c(1:sz)]
-write.table(cbind(Datar[(1:sz),1],v),file = "D:/preSolve2/选取差异基因/mely_EBV显著基因的p值.txt",     sep='    ',col.names = FALSE,quote=FALSE)
+write.table(cbind(Datar[(1:sz),1],v),file = "D:/preSolve2/mely_EBV_p.txt",     sep='    ',col.names = FALSE,quote=FALSE)
 ```
 
