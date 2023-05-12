@@ -45,22 +45,22 @@ def split_data(data):
     data = (data - data.min(axis=0)) / (
             data.max(axis=0) - data.min(axis=0))
     mutation = data.iloc[:, 2:14310]
-    CNV = data.iloc[:, 14310:39383]
+    CNA = data.iloc[:, 14310:39383]
     methylation = data.iloc[:, 39383:-1]
     mutation.fillna(0, inplace=True)
-    CNV.fillna(0, inplace=True)
+    CNA.fillna(0, inplace=True)
     methylation.fillna(0, inplace=True)
-    return mutation, CNV, methylation
+    return mutation, CNA, methylation
 
 path_train_data = "/home/bks/Challenge/DataSet/SMOTE_train_data.csv"
 path_valid_data = "/home/bks/Challenge/DataSet/test_data.csv"
 
 train_data, train_features_four, train_target = load_data(path_train_data)
-train_mutation, train_CNV, train_methylation = split_data(train_data)
+train_mutation, train_CNA, train_methylation = split_data(train_data)
 
 
 valid_data, valid_features_four, valid_target = load_data(path_valid_data)
-valid_mutation, valid_CNV, valid_methylation = split_data(valid_data)
+valid_mutation, valid_CNA, valid_methylation = split_data(valid_data)
 ```
 
 
@@ -226,7 +226,7 @@ def plot_roc_ave4(train_x, train_y, valid_x, valid_y, label, parameters,path=Non
     num=len(parameters)
     lw = 2
     plt.figure()
-    flag=["all","mutation","CNV","methylation"]
+    flag=["all","mutation","CNA","methylation"]
     flag1 = ["Combined Feature", "Gene Mutation", "CNA", "Methylation"]
     colors = ['red', 'darkorange', 'skyblue', 'darkcyan']
     for i in range(num):
@@ -240,7 +240,7 @@ def plot_roc_ave4(train_x, train_y, valid_x, valid_y, label, parameters,path=Non
     plt.ylim([0.0, 1.05])
     plt.xlabel('False Positive Rate')
     plt.ylabel('True Positive Rate')
-    plt.title('Average ROC Curve Of DCS With Different Feature Inputs')
+    plt.title('Average ROC Curve Of Ⅰ-MC With Different Feature Inputs')
     plt.legend(loc="lower right")
     path = '/home/bks/Challenge/pic/ROC_curve_of_' + path + '.png'
     plt.savefig(path, dpi=600)
@@ -257,13 +257,13 @@ def main_4(train_x, train_y, valid_x, valid_y, C, random_state, name, parameters
     return acc, clf , y_predict
 
 # ****************************************************************************
-# ****************************** DCS strtegy  ***********************************
+# ****************************** Ⅰ-MC strtegy  ***********************************
 # ****************************************************************************
 parameters_4=dict()
 C_4=dict()
 name_4=dict()
-train_4={"all":train_features_four,"mutation":train_mutation,"CNV":train_CNV,"methylation":train_methylation}
-valid_4={"all":valid_features_four,"mutation":valid_mutation,"CNV":valid_CNV,"methylation":valid_methylation}
+train_4={"all":train_features_four,"mutation":train_mutation,"CNA":train_CNA,"methylation":train_methylation}
+valid_4={"all":valid_features_four,"mutation":valid_mutation,"CNA":valid_CNA,"methylation":valid_methylation}
 acc_4=dict()
 clf_4=dict()
 y_predict_4=dict()
@@ -271,7 +271,7 @@ y_predict_4=dict()
 # parameters
 C_4["all"]={'max':0.4,'min':0.05,'num':30}
 random_state_total_4=[42]
-name_4["all"]={'title':'DCS--Combined Feature','path':'total','detail_name':['CIN','GS','MSI','EBV']}
+name_4["all"]={'title':'Ⅰ-MC--Combined Feature','path':'total','detail_name':['CIN','GS','MSI','EBV']}
 parameters_4["all"]={'C': 0.10816326530612246, 'class_weight': None, 'dual': False, 'fit_intercept': True,
                     'intercept_scaling': 1, 'l1_ratio': None, 'max_iter': 50, 'multi_class': 'ovr', 'n_jobs': None,
                     'penalty': 'l1', 'random_state': 42, 'solver': 'saga', 'tol': 0.0001, 'verbose': 0, 'warm_start': False}
@@ -279,25 +279,25 @@ acc_4["all"],clf_4["all"],y_predict_4["all"]=main_4(train_features_four, train_t
 
 C_4["mutation"]={'max':0.5,'min':0.1,'num':30}
 random_state_mutation_4=[42]
-name_4["mutation"]={'title':'DCS--Gene Mutation','path':'mutation','detail_name':['CIN','GS','MSI','EBV']}
+name_4["mutation"]={'title':'Ⅰ-MC--Gene Mutation','path':'mutation','detail_name':['CIN','GS','MSI','EBV']}
 parameters_4["mutation"]={'C': 0.36122448979591837, 'class_weight': None, 'dual': False,
                        'fit_intercept': True, 'intercept_scaling': 1, 'l1_ratio': None,
                        'max_iter': 50, 'multi_class': 'ovr', 'n_jobs': None, 'penalty': 'l1',
                        'random_state': 42, 'solver': 'saga', 'tol': 0.0001, 'verbose': 0, 'warm_start': False}
 acc_4["mutation"],clf_4["mutation"],y_predict_4["mutation"]=main_4(train_mutation, train_target, valid_mutation, valid_target, C_4["mutation"], random_state_mutation_4,name_4["mutation"],parameters_4["mutation"])
 
-C_4["CNV"]={'max':0.7,'min':0.4,'num':30}
-random_state_CNV_4=[42]
-name_4["CNV"]={'title':'DCS--CNA','path':'CNV','detail_name':['CIN','GS','MSI','EBV']}
-parameters_4["CNV"]={'C': 0.48367346938775513, 'class_weight': None, 'dual': False, 'fit_intercept': True,
+C_4["CNA"]={'max':0.7,'min':0.4,'num':30}
+random_state_CNA_4=[42]
+name_4["CNA"]={'title':'Ⅰ-MC--CNA','path':'CNA','detail_name':['CIN','GS','MSI','EBV']}
+parameters_4["CNA"]={'C': 0.48367346938775513, 'class_weight': None, 'dual': False, 'fit_intercept': True,
                   'intercept_scaling': 1, 'l1_ratio': None, 'max_iter': 50, 'multi_class': 'ovr', 'n_jobs': None,
                   'penalty': 'l1', 'random_state': 42, 'solver': 'saga', 'tol': 0.0001, 'verbose': 0, 'warm_start': False}
 
-acc_4["CNV"],clf_4["CNV"],y_predict_4["CNV"]=main_4(train_CNV, train_target, valid_CNV, valid_target, C_4["CNV"], random_state_CNV_4,name_4["CNV"],parameters_4["CNV"])
+acc_4["CNA"],clf_4["CNA"],y_predict_4["CNA"]=main_4(train_CNA, train_target, valid_CNA, valid_target, C_4["CNA"], random_state_CNA_4,name_4["CNA"],parameters_4["CNA"])
 
 C_4["methylation"]={'max':0.6,'min':0.2,'num':30}
 random_state_methylation_4=[42]
-name_4["methylation"]={'title':'DCS--Methylation','path':'methylation','detail_name':['CIN','GS','MSI','EBV']}
+name_4["methylation"]={'title':'Ⅰ-MC--Methylation','path':'methylation','detail_name':['CIN','GS','MSI','EBV']}
 parameters_4["methylation"]={'C': 0.42653061224489797, 'class_weight': None, 'dual': False, 'fit_intercept': True,
                            'intercept_scaling': 1, 'l1_ratio': None, 'max_iter': 50, 'multi_class': 'ovr', 'n_jobs': None,
                            'penalty': 'l1', 'random_state': 42, 'solver': 'saga', 'tol': 0.0001, 'verbose': 0, 'warm_start': False}
@@ -396,7 +396,7 @@ def plot_roc_ave32(train_x, train_y, valid_x, valid_y,  parameters,flag,path=Non
     plt.ylim([0.0, 1.05])
     plt.xlabel('False Positive Rate')
     plt.ylabel('True Positive Rate')
-    plt.title('Average ROC Curve Of CBCS With Different Feature Inputs')
+    plt.title('Average ROC Curve Of Ⅱ-HC With Different Feature Inputs')
     plt.legend(loc="lower right")
     if path!=None:
         path = '/home/bks/Challenge/pic/ROC_curve_of_' + path + '.png'
@@ -448,14 +448,14 @@ def main_32(train_x, train_y, valid_x, valid_y, C, random_state, name, parameter
     return acc,y_predict
 
 #****************************************************************************
-#******************************   CBCS strategy  ****************************
+#******************************   Ⅱ-HC strategy  ****************************
 #****************************************************************************
 
-parameters_32= {"all":dict(),"mutation":dict(),"CNV":dict(),"methylation":dict()}
+parameters_32= {"all":dict(),"mutation":dict(),"CNA":dict(),"methylation":dict()}
 C_32 = {"max": 1.2, "min": 0.2, "num": 50}
 
-train_32={"all":train_features_four,"mutation":train_mutation,"CNV":train_CNV,"methylation":train_methylation}
-valid_32={"all":valid_features_four,"mutation":valid_mutation,"CNV":valid_CNV,"methylation":valid_methylation}
+train_32={"all":train_features_four,"mutation":train_mutation,"CNA":train_CNA,"methylation":train_methylation}
+valid_32={"all":valid_features_four,"mutation":valid_mutation,"CNA":valid_CNA,"methylation":valid_methylation}
 train_target=pd.DataFrame(train_target)
 valid_target=pd.DataFrame(valid_target)
 
@@ -475,10 +475,10 @@ parameters_32["mutation"][0]={'C': 0.659795918367347, 'class_weight': None, 'dua
 parameters_32["mutation"][1]={'C': 1.8375510204081633, 'class_weight': None, 'dual': False, 'fit_intercept': True,
                               'intercept_scaling': 1, 'l1_ratio': None, 'max_iter': 50, 'multi_class': 'ovr', 'n_jobs': None,
                               'penalty': 'l1', 'random_state': 42, 'solver': 'saga', 'tol': 0.0001, 'verbose': 0, 'warm_start': False}
-parameters_32["CNV"][0]={'C': 1.9187755102040818, 'class_weight': None, 'dual': False, 'fit_intercept': True,
+parameters_32["CNA"][0]={'C': 1.9187755102040818, 'class_weight': None, 'dual': False, 'fit_intercept': True,
                          'intercept_scaling': 1, 'l1_ratio': None, 'max_iter': 50, 'multi_class': 'ovr', 'n_jobs': None,
                          'penalty': 'l1', 'random_state': 42, 'solver': 'saga', 'tol': 0.0001, 'verbose': 0, 'warm_start': False}
-parameters_32["CNV"][1]={'C': 0.8222448979591837, 'class_weight': None, 'dual': False, 'fit_intercept': True,
+parameters_32["CNA"][1]={'C': 0.8222448979591837, 'class_weight': None, 'dual': False, 'fit_intercept': True,
                          'intercept_scaling': 1, 'l1_ratio': None, 'max_iter': 50, 'multi_class': 'ovr', 'n_jobs': None,
                          'penalty': 'l1', 'random_state': 42, 'solver': 'saga', 'tol': 0.0001, 'verbose': 0, 'warm_start': False}
 
@@ -489,10 +489,10 @@ parameters_32["methylation"][1]={'C': 1.2283673469387755, 'class_weight': None, 
                                  'intercept_scaling': 1, 'l1_ratio': None, 'max_iter': 50, 'multi_class': 'ovr', 'n_jobs': None,
                                  'penalty': 'l1', 'random_state': 42, 'solver': 'saga', 'tol': 0.0001, 'verbose': 0, 'warm_start': False}
 
-name_32={"all":{"title":'CBCS--Combined Feature','path':'3+2_classfier_total'},
-            "mutation":{"title":'CBCS--Gene Mutation','path':'3+2_classfier_mutation'},
-            "CNV":{"title":'CBCS--CNA','path':'3+2_classfier_CNV'},
-            "methylation":{"title":'CBCS--Methylation','path':'3+2_classfier_methylation'}}
+name_32={"all":{"title":'Ⅱ-HC--Combined Feature','path':'3+2_classfier_total'},
+            "mutation":{"title":'Ⅱ-HC--Gene Mutation','path':'3+2_classfier_mutation'},
+            "CNA":{"title":'Ⅱ-HC--CNA','path':'3+2_classfier_CNA'},
+            "methylation":{"title":'Ⅱ-HC--Methylation','path':'3+2_classfier_methylation'}}
 
 for i in range(4):
     acc_32[statistic[i]],y_predict_32[statistic[i]]=main_32(train_32[statistic[i]], train_target, valid_32[statistic[i]], valid_target, C_32, random_state, name_32[statistic[i]], parameters_32[statistic[i]])
@@ -580,7 +580,7 @@ def plot_roc_ave222(train_x, train_y, valid_x, valid_y,  parameters,flag,path=No
             fpr[j], tpr[j], _ = roc_curve(temp_y[:, j], y_prob.iloc[:, j])
             roc_auc[j] = auc(fpr[j], tpr[j])
 
-        # Compute macro-average ROC curve and ROC area（方法一）
+        # Compute macro-average ROC curve and ROC area
         # First aggregate all false positive rates
         all_fpr = np.unique(np.concatenate([fpr[i] for i in range(num)]))
         # Then interpolate all ROC curves at this points
@@ -602,7 +602,7 @@ def plot_roc_ave222(train_x, train_y, valid_x, valid_y,  parameters,flag,path=No
     plt.ylim([0.0, 1.05])
     plt.xlabel('False Positive Rate')
     plt.ylabel('True Positive Rate')
-    plt.title('Average ROC Curve Of HBCS With Different Feature Inputs')
+    plt.title('Average ROC Curve Of Ⅲ-HC With Different Feature Inputs')
     plt.legend(loc="lower right")
     if path != None:
         path = '/home/bks/Challenge/pic/ROC_curve_of_' + path + '.png'
@@ -669,14 +669,14 @@ def main_222(train_x, train_y, valid_x, valid_y, C, random_state, name, paramete
     return acc,y_predict
 
 #****************************************************************************
-#************************** HBCS strategy ***********************************
+#************************** Ⅲ-HC strategy ***********************************
 #****************************************************************************
 
-parameters_222= {"all":dict(),"mutation":dict(),"CNV":dict(),"methylation":dict()}
+parameters_222= {"all":dict(),"mutation":dict(),"CNA":dict(),"methylation":dict()}
 C_222 = {"max": 1.2, "min": 0.2, "num": 50}
 
-train_222={"all":train_features_four,"mutation":train_mutation,"CNV":train_CNV,"methylation":train_methylation}
-valid_222={"all":valid_features_four,"mutation":valid_mutation,"CNV":valid_CNV,"methylation":valid_methylation}
+train_222={"all":train_features_four,"mutation":train_mutation,"CNA":train_CNA,"methylation":train_methylation}
+valid_222={"all":valid_features_four,"mutation":valid_mutation,"CNA":valid_CNA,"methylation":valid_methylation}
 train_target=pd.DataFrame(train_target)
 valid_target=pd.DataFrame(valid_target)
 
@@ -684,10 +684,10 @@ acc_222=dict()
 y_predict_222=dict()
 random_state=[42]
 
-name_222={"all":{"title":'HBCS--Combined Feature','path':'222_classfier_total'},
-            "mutation":{"title":'HBCS--Gene Mutation','path':'222_classfier_mutation'},
-            "CNV":{"title":'HBCS--CNA','path':'222_classfier_CNV'},
-            "methylation":{"title":'HBCS--Methylation','path':'222_classfier_methylation'}}
+name_222={"all":{"title":'Ⅲ-HC--Combined Feature','path':'222_classfier_total'},
+            "mutation":{"title":'Ⅲ-HC--Gene Mutation','path':'222_classfier_mutation'},
+            "CNA":{"title":'Ⅲ-HC--CNA','path':'222_classfier_CNA'},
+            "methylation":{"title":'Ⅲ-HC--Methylation','path':'222_classfier_methylation'}}
 
 parameters_222["all"][0]= {'C': 0.7795918367346939, 'class_weight': None, 'dual': False, 'fit_intercept': True,
                     'intercept_scaling': 1, 'l1_ratio': None, 'max_iter': 50, 'multi_class': 'ovr',
@@ -710,13 +710,13 @@ parameters_222["mutation"][1]={'C': 1.243103448275862, 'class_weight': None, 'du
 parameters_222["mutation"][2]={'C': 1.1917241379310346, 'class_weight': None, 'dual': False, 'fit_intercept': True,
                                'intercept_scaling': 1, 'l1_ratio': None, 'max_iter': 50, 'multi_class': 'ovr', 'n_jobs': None,
                                'penalty': 'l1', 'random_state': 42, 'solver': 'saga', 'tol': 0.0001, 'verbose': 0, 'warm_start': False}
-parameters_222["CNV"][0]={'C': 0.859183673469388, 'class_weight': None, 'dual': False, 'fit_intercept': True, 'intercept_scaling': 1,
+parameters_222["CNA"][0]={'C': 0.859183673469388, 'class_weight': None, 'dual': False, 'fit_intercept': True, 'intercept_scaling': 1,
                           'l1_ratio': None, 'max_iter': 50, 'multi_class': 'ovr', 'n_jobs': None, 'penalty': 'l1', 'random_state': 42,
                           'solver': 'saga', 'tol': 0.0001, 'verbose': 0, 'warm_start': False}
-parameters_222["CNV"][1]={'C': 2.1106122448979594, 'class_weight': None, 'dual': False, 'fit_intercept': True, 'intercept_scaling': 1,
+parameters_222["CNA"][1]={'C': 2.1106122448979594, 'class_weight': None, 'dual': False, 'fit_intercept': True, 'intercept_scaling': 1,
                           'l1_ratio': None, 'max_iter': 50, 'multi_class': 'ovr', 'n_jobs': None, 'penalty': 'l1', 'random_state': 42,
                           'solver': 'saga', 'tol': 0.0001, 'verbose': 0, 'warm_start': False}
-parameters_222["CNV"][2]= {'C': 0.8144897959183675, 'class_weight': None, 'dual': False, 'fit_intercept': True, 'intercept_scaling': 1,
+parameters_222["CNA"][2]= {'C': 0.8144897959183675, 'class_weight': None, 'dual': False, 'fit_intercept': True, 'intercept_scaling': 1,
                            'l1_ratio': None, 'max_iter': 50, 'multi_class': 'ovr', 'n_jobs': None, 'penalty': 'l1', 'random_state': 42,
                            'solver': 'saga', 'tol': 0.0001, 'verbose': 0, 'warm_start': False}
 parameters_222["methylation"][0]={'C': 0.06137931034482759, 'class_weight': None, 'dual': False, 'fit_intercept': True,
@@ -749,7 +749,7 @@ def plot_ave_for_strategy(train_x, train_y, valid_x, valid_y, parameters1, param
     plt.figure()
     colors = ['red', 'darkorange', 'darkcyan']
     temp_y = label_binarize(valid_y, classes=[1, 2, 3, 4])
-    flag1 = ["DAS", "CBCS", "HBCS"]
+    flag1 = ["Ⅰ-MC", "Ⅱ-HC", "Ⅲ-HC"]
     auc_end = dict()
 
 
@@ -1034,7 +1034,7 @@ patient_information$OS_MONTHS=as.numeric(patient_information$OS_MONTHS)
 patient_information$OS_STATUS=as.numeric(patient_information$OS_STATUS)
 cox_pict1 <- coxph(Surv(OS_MONTHS , OS_STATUS) ~ SUBTYPE + AGE + SEX , data = patient_information)
 ggforest(cox_pict1,
-     main = 'CBCS(A)',
+     main = 'Ⅱ-HC(A)',
      fontsize = 0.8
      )
 ```
