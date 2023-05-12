@@ -1,3 +1,9 @@
+
+@article{chen2020pathomic,
+  title={Pathomic Fusion: An Integrated Framework for Fusing Histopathology and Genomic Features for Cancer Diagnosis and Prognosis},
+  author={Chen, Richard J and Lu, Ming Y and Wang, Jingwen and Williamson, Drew FK and Rodig, Scott J and Lindeman, Neal I and Mahmood, Faisal},
+  journal={IEEE Transactions on Medical Imaging},
+  year={2020},
 # HCG, a Hierarchical DNA-based Classifier for Gastric Cancer Molecular Subtyping
 
 
