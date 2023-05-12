@@ -1,8 +1,8 @@
 
 # Identifying gastric cancer molecular subtypes by integrating DNA-based hierarchical classification strategy and clinical stratification
-*Binyu Yang†, Siying Liu†, Jiemin Xie†, Xi Tang‡, Pan Guan‡, Yifan Zhu1,‡, Li C. Xia2,**
+*Binyu Yang†, Siying Liu†, Jiemin Xie†, Xi Tang‡, Pan Guan‡, Yifan Zhu‡, Li C. Xia**
 
-## Introduction
+## Summary
 
 This repository is code dedicated to the testing data of HCG, a classifier which have good performance in identifying the molecular subtypes of gastric cancer. Leveraging three DNA-alterations (gene mutation, CNA, methylation) datasets from TCGA, we developed a DNA-level predictive classifier, which we termed HCG (Hierarchical DNA-based Classifier for Gastric Cancer Molecular Subtyping) using hierarchical stepwise learning method.
 
