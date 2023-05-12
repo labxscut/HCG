@@ -8,7 +8,7 @@ The original data are available in  cBioPortal database (https://www.cbioportal.
 
 · ③ Esophageal Adenocarcinoma (TCGA, PanCancer Atlas)(https://www.cbioportal.org/study/summary?id=esca_tcga_pan_can_atlas_2018)
 
-The datasets downloaded from cbioportal and the pre-processing data are restored in https://github.com/labxscut/HCG/releases or in the latest release named HCG at https://github.com/labxscut/UGES. The readers can download them directly.
+The datasets downloaded from cbioportal and the pre-processing data are restored in https://github.com/labxscut/HCG/releases or in the latest release named HCG at https://github.com/labxscut/HCG. The readers can download them directly.
 
 ## Brief description for the data and their potential use
 
