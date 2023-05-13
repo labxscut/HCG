@@ -9,6 +9,8 @@ The repository contains all the data (https://github.com/labxscut/HCG/tree/main/
 
 # Data 
 
+## Original data 
+
 The original data are available in  cBioPortal database (https://www.cbioportal.org/)
 
 · ① Stomach Adenocarcinoma (TCGA, PanCancer Atlas)(https://www.cbioportal.org/study/summary?id=stad_tcga_pan_can_atlas_2018)
@@ -17,30 +19,29 @@ The original data are available in  cBioPortal database (https://www.cbioportal.
 
 · ③ Esophageal Adenocarcinoma (TCGA, PanCancer Atlas)(https://www.cbioportal.org/study/summary?id=esca_tcga_pan_can_atlas_2018)
 
-The datasets downloaded from cbioportal and the pre-processing data are restored in https://github.com/labxscut/HCG/releases or in the latest release named HCG at https://github.com/labxscut/UGES. The readers can download them directly.
+The dataset ① and ② are two large-scale multi-omics datasets of gastric cancer patients, containing the genetic, epigenetic, expression and clinical data, etc. The dataset  ③ is  a dataset of esophageal Adenocarcinoma patients,  which shares similar data types and structures with datasets ① and ②.The dataset ① actually is an additional dataset from the TCGA PanCanAtlas published in 2018, as the supplementary data of  dataset ②.  
 
-## Brief description for the data and their potential use
+The original data are restored in https://github.com/labxscut/HCG/releases . 
 
-The dataset ① and ② are two large-scale multi-omics datasets of gastric cancer patients, containing the genetic, epigenetic, expression and clinical data, etc. The dataset  ③ is  a dataset of esophageal Adenocarcinoma patients,  which shares similar data types and structures with datasets ① and ②.The dataset ① actually is an additional dataset from another TCGA study published in 2018, as the supplementary data of  dataset ②.
+· [stad_tcga_pan_can_atlas_2018.tar.gz](https://github.com/labxscut/HCG/releases/download/HCG/stad_tcga_pan_can_atlas_2018.tar.gz) is the  dataset ①
 
-In HCG, we used these large-scale multi-omics data as the original data. <same_esca_data.csv> and <same_esca_data.csv> are the pro-precessing data. <survival.csv> is data used in survival analysis. They provided us the sufficient condition to do the analysis.
+·[stad_tcga_pub.tar.gz](https://github.com/labxscut/HCG/releases/download/HCG/stad_tcga_pub.tar.gz) is the  dataset ②
 
-## Data types
+·[esca_tcga_pan_can_atlas_2018.tar.gz](https://github.com/labxscut/HCG/releases/download/HCG/esca_tcga_pan_can_atlas_2018.tar.gz) is the  dataset ③ 
 
-In HCG, the data are:
+## Pre-processing the data and their use
 
-· The alterations of multi-omics data, including gene mutations, copy number abberations, methylation alterations, etc.
+We used the alterations of multi-omics data, including gene mutations, copy number aberrations, methylation alterations and the clinical data of samples, including subtype, age, sex, patient ID, etc. in our analysis. The pre-processing data are restored in https://github.com/labxscut/HCG/releases . The readers can download them directly. We used data  augmentation technique called Synthetic Minority Oversampling Technique (**SMOTE**) to balance the training set.
 
-· The clinical data of samples, including subtype, age, sex, patient ID, etc.
+· [SMOTE_train_data.csv](https://github.com/labxscut/HCG/releases/download/HCG/SMOTE_train_data.csv) is the training set after data  augmentation
 
-## Estimate of dataset size
+·[test_data.csv](https://github.com/labxscut/HCG/releases/download/HCG/test_data.csv)  is the test set
 
-After pre-processing, we have the data for 453 patients.
-The required dependency is R and Python.
+·[survival_data.csv](https://github.com/labxscut/HCG/releases/download/HCG/survival_data.csv)  is data used in survival analysis.
 
-The code is contained in https://github.com/labxscut/HCG/blob/main/code.md
+After pre-processing, we have the data for total  453 patients.
 
-The data details are shown in https://github.com/labxscut/HCG/tree/main/Data
+
 
 
 # Contact & Support:
