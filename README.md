@@ -41,7 +41,7 @@ We used the alterations of multi-omics data, including gene mutations, copy numb
 
 After pre-processing, we have the data for total  453 patients.
 
-## Code
+# Code
 
 The dependencies required are R and Python. All of the code can be found  [here](https://github.com/labxscut/HCG/tree/main/Code).
 
