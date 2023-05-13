@@ -49,12 +49,12 @@ The dependencies required are R and Python. All of the code can be found  [here]
 
 The code base structure is explained below:
 
-* **[1.Parameters_adjustment.py](https://github.com/labxscut/HCG/blob/main/Code/1. Parameters_adjustment.py)**: script for constructing classifiers and finding the optimal parameters using cross-validation.
-* **[2.Evaluation_AUROC.py](https://github.com/labxscut/HCG/blob/main/Code/2. Evaluation_AUROC.py)**: script for plotting the ROC curve and calculating the AUC value.
-* **[3.Survival_analysis.R](https://github.com/labxscut/HCG/blob/main/Code/3. Survival_analysis.R)**: script for multivariate analysis based on TCGA, I-MC(A), II-HC(A) and III-HC(A) defined subtypes.
-* **[4.Alluvial_map.R](https://github.com/labxscut/HCG/blob/main/Code/4. Alluvial_map.R)**: script for plotting alluvial maps between TCGA subtypes and I-MC(A), HCG, III-HC(A) subtypes.
-* **[5.Heatmap.R](https://github.com/labxscut/HCG/blob/main/Code/5. Heatmap.R)**: script for plotting Heatmap based on the genes identified by HCG classifier
-* **[6.Difference_test.R](https://github.com/labxscut/HCG/blob/main/Code/6. Difference_test.R)**:  script for differential test for identifying significant DNA alterations 
+* **[Parameters_adjustment.py](https://github.com/labxscut/HCG/blob/main/Code/1. Parameters_adjustment.py)**: script for constructing classifiers and finding the optimal parameters using cross-validation.
+* **[Evaluation_AUROC.py](https://github.com/labxscut/HCG/blob/main/Code/2. Evaluation_AUROC.py)**: script for plotting the ROC curve and calculating the AUC value.
+* **[Survival_analysis.R](https://github.com/labxscut/HCG/blob/main/Code/3. Survival_analysis.R)**: script for multivariate analysis based on TCGA, I-MC(A), II-HC(A) and III-HC(A) defined subtypes.
+* **[Alluvial_map.R](https://github.com/labxscut/HCG/blob/main/Code/4. Alluvial_map.R)**: script for plotting alluvial maps between TCGA subtypes and I-MC(A), HCG, III-HC(A) subtypes.
+* **[Heatmap.R](https://github.com/labxscut/HCG/blob/main/Code/5. Heatmap.R)**: script for plotting Heatmap based on the genes identified by HCG classifier
+* **[Difference_test.R](https://github.com/labxscut/HCG/blob/main/Code/6. Difference_test.R)**:  script for differential test for identifying significant DNA alterations 
 
 
 
