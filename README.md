@@ -5,10 +5,9 @@
 ## Summary
 We develop an accurate, robust, and easily adoptable subtyping classifier for gastric cancer (GC) molecular subtypes.It leveraged all DNA-level alterations(including gene mutations,copy number aberrations and methylations) as predictors to delineate specific molecular subtypes of GC. The classifier optimize with hierarchical classification strategy and Lasso-Logistic regression, and benchmark for subtype prediction performance and clinical stratification capacity. The prediction performance is assessed by AUC values and the clinical stratification capacity is assessed by multivariate survival analysis.
 
-The repository contains all the datasets and code used for training and evaluating the classifiers, as well as important findings (please refer to the figures).
+The repository contains all the data (https://github.com/labxscut/HCG/tree/main/Data) and code (https://github.com/labxscut/HCG/blob/main/code.md) used for training and evaluating the classifiers, as well as important findings (please refer to the figures(https://github.com/labxscut/HCG/tree/main/Figures)).
 
-# Data:
-# The data for HCG
+# Data 
 
 The original data are available in  cBioPortal database (https://www.cbioportal.org/)
 
