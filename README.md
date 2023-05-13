@@ -23,7 +23,7 @@ The dataset ① and ② are two large-scale multi-omics datasets of gastric canc
 
 The original data are restored in https://github.com/labxscut/HCG/releases . 
 
-* ** [stad_tcga_pan_can_atlas_2018.tar.gz](https://github.com/labxscut/HCG/releases/download/HCG/stad_tcga_pan_can_atlas_2018.tar.gz)** is the  dataset ①
+* **[stad_tcga_pan_can_atlas_2018.tar.gz](https://github.com/labxscut/HCG/releases/download/HCG/stad_tcga_pan_can_atlas_2018.tar.gz)** is the  dataset ①
 
 * **[stad_tcga_pub.tar.gz](https://github.com/labxscut/HCG/releases/download/HCG/stad_tcga_pub.tar.gz)** is the  dataset ②
 
@@ -33,7 +33,7 @@ The original data are restored in https://github.com/labxscut/HCG/releases .
 
 We used the alterations of multi-omics data, including gene mutations, copy number aberrations, methylation alterations and the clinical data of samples, including subtype, age, sex, patient ID, etc. in our analysis. The pre-processing data are restored in https://github.com/labxscut/HCG/releases . The readers can download them directly. We used data  augmentation technique called Synthetic Minority Oversampling Technique (**SMOTE**) to balance the training set.
 
-* ** [SMOTE_train_data.csv](https://github.com/labxscut/HCG/releases/download/HCG/SMOTE_train_data.csv)** is the training set after data  augmentation
+* **[SMOTE_train_data.csv](https://github.com/labxscut/HCG/releases/download/HCG/SMOTE_train_data.csv)** is the training set after data  augmentation
 
 * **[test_data.csv](https://github.com/labxscut/HCG/releases/download/HCG/test_data.csv)**  is the test set
 
