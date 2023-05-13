@@ -13,33 +13,46 @@ The repository contains all the data (https://github.com/labxscut/HCG/tree/main/
 
 The original data are available in  cBioPortal database (https://www.cbioportal.org/)
 
-· ① Stomach Adenocarcinoma (TCGA, PanCancer Atlas)(https://www.cbioportal.org/study/summary?id=stad_tcga_pan_can_atlas_2018)
+* ① Stomach Adenocarcinoma (TCGA, PanCancer Atlas)(https://www.cbioportal.org/study/summary?id=stad_tcga_pan_can_atlas_2018)
 
-· ② Stomach Adenocarcinoma (TCGA, Nature 2014)(https://www.cbioportal.org/study/summary?id=stad_tcga_pub)
+* ② Stomach Adenocarcinoma (TCGA, Nature 2014)(https://www.cbioportal.org/study/summary?id=stad_tcga_pub)
 
-· ③ Esophageal Adenocarcinoma (TCGA, PanCancer Atlas)(https://www.cbioportal.org/study/summary?id=esca_tcga_pan_can_atlas_2018)
+* ③ Esophageal Adenocarcinoma (TCGA, PanCancer Atlas)(https://www.cbioportal.org/study/summary?id=esca_tcga_pan_can_atlas_2018)
 
 The dataset ① and ② are two large-scale multi-omics datasets of gastric cancer patients, containing the genetic, epigenetic, expression and clinical data, etc. The dataset  ③ is  a dataset of esophageal Adenocarcinoma patients,  which shares similar data types and structures with datasets ① and ②.The dataset ① actually is an additional dataset from the TCGA PanCanAtlas published in 2018, as the supplementary data of  dataset ②.  
 
 The original data are restored in https://github.com/labxscut/HCG/releases . 
 
-· [stad_tcga_pan_can_atlas_2018.tar.gz](https://github.com/labxscut/HCG/releases/download/HCG/stad_tcga_pan_can_atlas_2018.tar.gz) is the  dataset ①
+* ** [stad_tcga_pan_can_atlas_2018.tar.gz](https://github.com/labxscut/HCG/releases/download/HCG/stad_tcga_pan_can_atlas_2018.tar.gz)** is the  dataset ①
 
-·[stad_tcga_pub.tar.gz](https://github.com/labxscut/HCG/releases/download/HCG/stad_tcga_pub.tar.gz) is the  dataset ②
+* **[stad_tcga_pub.tar.gz](https://github.com/labxscut/HCG/releases/download/HCG/stad_tcga_pub.tar.gz)** is the  dataset ②
 
-·[esca_tcga_pan_can_atlas_2018.tar.gz](https://github.com/labxscut/HCG/releases/download/HCG/esca_tcga_pan_can_atlas_2018.tar.gz) is the  dataset ③ 
+* **[esca_tcga_pan_can_atlas_2018.tar.gz](https://github.com/labxscut/HCG/releases/download/HCG/esca_tcga_pan_can_atlas_2018.tar.gz)** is the  dataset ③ 
 
 ## Pre-processing the data and their use
 
 We used the alterations of multi-omics data, including gene mutations, copy number aberrations, methylation alterations and the clinical data of samples, including subtype, age, sex, patient ID, etc. in our analysis. The pre-processing data are restored in https://github.com/labxscut/HCG/releases . The readers can download them directly. We used data  augmentation technique called Synthetic Minority Oversampling Technique (**SMOTE**) to balance the training set.
 
-· [SMOTE_train_data.csv](https://github.com/labxscut/HCG/releases/download/HCG/SMOTE_train_data.csv) is the training set after data  augmentation
+* ** [SMOTE_train_data.csv](https://github.com/labxscut/HCG/releases/download/HCG/SMOTE_train_data.csv)** is the training set after data  augmentation
 
-·[test_data.csv](https://github.com/labxscut/HCG/releases/download/HCG/test_data.csv)  is the test set
+* **[test_data.csv](https://github.com/labxscut/HCG/releases/download/HCG/test_data.csv)**  is the test set
 
-·[survival_data.csv](https://github.com/labxscut/HCG/releases/download/HCG/survival_data.csv)  is data used in survival analysis.
+* **[survival_data.csv](https://github.com/labxscut/HCG/releases/download/HCG/survival_data.csv)**  is data used in survival analysis.
 
 After pre-processing, we have the data for total  453 patients.
+
+## Code
+
+The dependencies required are R and Python. All of the code can be found  [here](https://github.com/labxscut/HCG/tree/main/Code).
+
+The code base structure is explained below:
+
+* **[1. Parameters_adjustment.py](https://github.com/labxscut/HCG/blob/main/Code/1. Parameters_adjustment.py)**: script for constructing classifiers and finding the optimal parameters using cross-validation.
+* **[2. Evaluation_AUROC.py](https://github.com/labxscut/HCG/blob/main/Code/2. Evaluation_AUROC.py)**: script for plotting the ROC curve and calculating the AUC value.
+* **[3. Survival_analysis.R](https://github.com/labxscut/HCG/blob/main/Code/3. Survival_analysis.R)**: script for multivariate analysis based on TCGA, I-MC(A), II-HC(A) and III-HC(A) defined subtypes.
+* **[4. Alluvial_map.R](https://github.com/labxscut/HCG/blob/main/Code/4. Alluvial_map.R)**: script for plotting alluvial maps between TCGA subtypes and I-MC(A), HCG, III-HC(A) subtypes.
+* **[5. Heatmap.R](https://github.com/labxscut/HCG/blob/main/Code/5. Heatmap.R)**: script for plotting Heatmap based on the genes identified by HCG classifier
+* **[6. Difference_test.R](https://github.com/labxscut/HCG/blob/main/Code/6. Difference_test.R)**:  script for differential test for identifying significant DNA alterations 
 
 
 
